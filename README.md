@@ -4,8 +4,10 @@ This repo includes a `st.experimental_connection` for Airtable which wraps the
 popular community created and maintained
 [pyAirtable](https://github.com/gtalarico/pyairtable) library.
 
-The initial focus of this connector is to read base records and schemas from
-Airtable. Write-back support may be added in the future.
+The initial focus of this connector is on read-only operations: specifically
+[listing records](https://airtable.com/developers/web/api/list-records) and
+[retrieving the schema](https://airtable.com/developers/web/api/get-base-schema)
+of an Airtable base. Write-back support may be added in the future.
 
 ### Minimal example: retrieve all records from base's first table
 
