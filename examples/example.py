@@ -14,6 +14,10 @@ st.markdown("### Get the base's schema (list of tables)")
 with st.echo():
     base_schema = conn.get_base_schema()
 
+    # Display the full base schema
+    with st.expander("Full base schema (all tables)"):
+        st.json(base_schema)
+
     # Display a list of tables to the right of the number of tables
     col1, col2 = st.columns(2)
     # Show the number of tables in the base
@@ -25,7 +29,7 @@ with st.echo():
     # Show the full schema for each table
     for table_schema in base_schema["tables"]:
         with st.expander(
-            f"Full schema for table '{table_schema['name']}' ({table_schema['id']})"
+            f"Table schema for '{table_schema['name']}' ({table_schema['id']})"
         ):
             col1, col2 = st.columns(2)
             col1.metric(label="Number of fields", value=len(table_schema["fields"]))
@@ -35,13 +39,11 @@ with st.echo():
             st.json(table_schema)
 
 st.markdown("### Retrieve records for each table (default 'json' cell format)")
-st.warning(
+st.markdown(
     "In this example, the first 10 records for each table are retrieved and displayed. Remove or increase `max_records` to retrieve more records.",
-    icon="ℹ️",
 )
-st.warning(
+st.markdown(
     "The [Airtable list records API](https://airtable.com/developers/web/api/list-records) defaults to `json` cell formatting so some complex field types may show values that are different from what you see in the Airtable UI/CSV exports.",
-    icon="ℹ️",
 )
 with st.echo():
     for table in base_schema["tables"]:
