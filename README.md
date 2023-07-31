@@ -1,4 +1,4 @@
-# Airtable Streamlit Connection
+# Airtable ⚡ Streamlit Connection 
 
 This repo includes a `st.experimental_connection` for Airtable which wraps the
 popular community created and maintained
