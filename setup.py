@@ -14,9 +14,9 @@ setuptools.setup(
     name=NAME,
     version=VERSION,
     description="Streamlit Connection for Airtable.",
-    url="https://github.com/airtable-labs/streamlit-airtable-connection",
+    url="https://github.com/marks/streamlit-airtable-connection",
     project_urls={
-        "Source Code": "https://github.com/airtable-labs/streamlit-airtable-connection",
+        "Source Code": "https://github.com/marks/streamlit-airtable-connection",
     },
     author="Mark Silverberg",
     author_email="mark.silverberg@airtable.com",
