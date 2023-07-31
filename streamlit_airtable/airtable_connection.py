@@ -17,9 +17,13 @@ class AirtableConnection(ExperimentalBaseConnection[Base]):
     # Get the base schema
     # Uses pyAirtable's metadata.get_base_schema method
     # which calls https://airtable.com/developers/web/api/get-base-schema
-    def get_base_schema(self, ttl: int = 3600, **kwargs) -> dict:
-        base_schema = metadata.get_base_schema(self._instance)
-        return base_schema
+    def get_base_schema(self, ttl: int = 3600) -> dict:
+        @cache_data(ttl=ttl)
+        def _get_base_schema() -> dict:
+            base_schema = metadata.get_base_schema(self._instance)
+            return base_schema
+
+        return _get_base_schema()
 
     # Query records from a table using pyAirtable's Table.all method
     # which calls https://airtable.com/developers/web/api/get-records
