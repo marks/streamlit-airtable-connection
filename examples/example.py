@@ -50,7 +50,7 @@ with st.echo():
         with st.expander(
             f"First 10 records of '{table['name']}' table with `json` cell format"
         ):
-            st.dataframe(conn.get_full_table(table["id"], max_records=100))
+            st.dataframe(conn.query(table["id"], max_records=10))
 
 st.markdown("### Retrieve records for each table ('string' cell format)")
 st.markdown(
@@ -62,9 +62,9 @@ with st.echo():
             f"First 10 records of '{table['name']}' table with `string` cell format"
         ):
             st.dataframe(
-                conn.get_full_table(
+                conn.query(
                     table["id"],
-                    max_records=100,
+                    max_records=10,
                     cell_format="string",
                     time_zone="America/Los_Angeles",
                     user_locale="en-us",

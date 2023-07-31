@@ -13,7 +13,11 @@ with st.expander("Base schema"):
 first_table = base_schema["tables"][0]
 st.markdown(f"First table ID: `{first_table['id']}` (named `{first_table['name']}`)")
 
-# Retrieve all records for the first table (pyAirtable) paginates automatically
-table_records = conn.get_full_table(first_table["id"])
+# Retrieve all records for the first table (pyAirtable paginates automatically)
+# (Note you can also pass in parameters supported by pyAirtable
+# (https://pyairtable.readthedocs.io/en/stable/api.html#parameters) such as as
+# max_records, view, sort, and formula into conn.query() like so:
+# table_records = conn.query(first_table["id"], max_records=25, view='viwXXX')
+table_records = conn.query(first_table["id"])
 st.markdown(f"{len(table_records)} records retrieved")
 st.dataframe(table_records)
