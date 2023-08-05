@@ -18,6 +18,6 @@ st.markdown(f"First table ID: `{first_table['id']}` (named `{first_table['name']
 # (https://pyairtable.readthedocs.io/en/stable/api.html#parameters) such as as
 # max_records, view, sort, and formula into conn.query() like so:
 # table_records = conn.query(first_table["id"], max_records=25, view='viwXXX')
-table_records = conn.query(first_table["id"])
+table_records = conn.query(table_id=first_table["id"])
 st.markdown(f"{len(table_records)} records retrieved")
 st.dataframe(table_records)
