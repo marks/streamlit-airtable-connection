@@ -1,4 +1,4 @@
-# Airtable ⚡ Streamlit Connection 
+# Airtable ⚡ Streamlit Connection
 
 This repo includes a `st.experimental_connection` for Airtable which wraps the
 popular community created and maintained
@@ -17,8 +17,9 @@ _See `examples/` for additional examples_
 
 ```
 [connections.your_connection_name]
-base_id = "appXXX"
-personal_access_token = "patXXX"
+personal_access_token = "patXXX" # REQUIRED
+base_id = "appXXX" # optional
+table_id = "tblXXX" # optional
 ```
 
 ℹ️ The Airtable
@@ -52,7 +53,7 @@ st.markdown(f"First table ID: `{first_table['id']}` (named `{first_table['name']
 # (https://pyairtable.readthedocs.io/en/stable/api.html#parameters) such as as
 # max_records, view, sort, and formula into conn.query() like so:
 # table_records = conn.query(first_table["id"], max_records=25, view='viwXXX')
-table_records = conn.query(first_table["id"])
+table_records = conn.query(table_id=first_table["id"])
 st.markdown(f"{len(table_records)} records retrieved")
 st.dataframe(table_records)
 ```
