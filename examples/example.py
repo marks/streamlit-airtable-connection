@@ -10,9 +10,22 @@ st.markdown("### Connect to Airtable")
 with st.echo():
     conn = st.experimental_connection("your_connection_name", type=AirtableConnection)
 
+st.markdown(
+    "### Get a list of bases\n(That the provided personal access token has access to)"
+)
+with st.echo():
+    bases_list = conn.list_bases()
+    st.json(bases_list)
+
+    base_id = bases_list["bases"][0]["id"]
+
+st.info(
+    f"The following examples use the first base from the list of bases above:\n\n`base_id={base_id}`"
+)
+
 st.markdown("### Get the base's schema (list of tables)")
 with st.echo():
-    base_schema = conn.get_base_schema()
+    base_schema = conn.get_base_schema(base_id)
 
     # Display the full base schema
     with st.expander("Full base schema (all tables)"):
@@ -50,7 +63,9 @@ with st.echo():
         with st.expander(
             f"First 10 records of '{table['name']}' table with `json` cell format"
         ):
-            st.dataframe(conn.query(table["id"], max_records=10))
+            st.dataframe(
+                conn.query(base_id=base_id, table_id=table["id"], max_records=10)
+            )
 
 st.markdown("### Retrieve records for each table ('string' cell format)")
 st.markdown(
@@ -63,7 +78,8 @@ with st.echo():
         ):
             st.dataframe(
                 conn.query(
-                    table["id"],
+                    base_id=base_id,
+                    table_id=table["id"],
                     max_records=10,
                     cell_format="string",
                     time_zone="America/Los_Angeles",

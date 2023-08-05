@@ -1,12 +1,12 @@
 import setuptools
 
-VERSION = "0.0.1"  # PEP-440
+VERSION = "0.0.2"
 
 NAME = "streamlit_airtable"
 
 INSTALL_REQUIRES = [
     "streamlit>=1.22.0",
-    "pyairtable>=1.5.0",
+    "pyairtable>=2.0.0",
 ]
 
 
