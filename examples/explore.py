@@ -1,12 +1,14 @@
-from streamlit_airtable import AirtableConnection
 import streamlit as st
 import pandas as pd
 import json
-import explore_helpers
 
 from langchain.chat_models import ChatOpenAI
 from langchain.agents import create_pandas_dataframe_agent
 from langchain.agents.agent_types import AgentType
+
+from streamlit_airtable import AirtableConnection
+
+import explore_helpers
 
 # Initiate connection to Airtable using st.experimental_connection
 airtable_conn = st.experimental_connection(
