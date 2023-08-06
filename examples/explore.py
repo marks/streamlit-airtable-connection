@@ -4,6 +4,11 @@ import pandas as pd
 import json
 import explore_helpers
 
+from langchain.chat_models import ChatOpenAI
+from langchain.agents import create_pandas_dataframe_agent
+from langchain.agents.agent_types import AgentType
+
+
 # Initiate connection to Airtable using st.experimental_connection
 airtable_conn = st.experimental_connection(
     "your_connection_name", type=AirtableConnection
@@ -16,15 +21,29 @@ bases_id_to_name = {base["id"]: base["name"] for base in bases_list["bases"]}
 # Add a sidebar to select a base
 with st.sidebar:
     st.markdown("## Configuration")
-    selected_base_id = st.sidebar.selectbox(
-        "Which base would you like to explore?",
-        options=list(bases_id_to_name.keys()),
-        format_func=lambda base_id: bases_id_to_name[base_id],
-    )
-    st.info(
-        "If you don't see a base in the list, make sure your personal access token has access to it.",
-        icon="ℹ️",
-    )
+
+    with st.form("Configuration"):
+        selected_base_id = st.selectbox(
+            "Which base would you like to explore?",
+            options=list(bases_id_to_name.keys()),
+            format_func=lambda base_id: bases_id_to_name[base_id],
+            help="If you don't see a base in the list, make sure your personal access token has access to it.",
+        )
+        openai_api_key = st.text_input(
+            "(Optional) What is your OpenAI API key?",
+            value="",
+            type="password",
+            help="(Optional) You can find your API key at https://platform.openai.com/account/api-keys. If not supplied, you will not be able to use the AI features on this page.",
+        )
+
+        if st.form_submit_button("Submit"):
+            st.session_state.selected_base_id = selected_base_id
+            st.session_state.openai_api_key = openai_api_key
+
+    # st.divider()
+    # st.markdown("## DEBUG - Session state")
+    # st.write(st.session_state)
+
 
 # Main content pane
 with st.container():
@@ -149,3 +168,60 @@ with st.container():
             ),
             hide_index=True,
         )
+
+    st.divider()
+    st.markdown("### AI")
+
+    valid_openai_api_key_present = openai_api_key.startswith("sk-")
+
+    if not valid_openai_api_key_present:
+        st.warning("Please enter your OpenAI API key!", icon="⚠")
+
+    col1, col2 = st.columns(2)
+
+    col1.markdown("#### AI Input")
+    col2.markdown("#### AI Output")
+
+    with col1.form("AI Input"):
+        df_for_ai = None
+
+        # Select a table to query
+        table_for_ai = st.selectbox(
+            "Which table would you like to query?",
+            tables_df["name"],
+            disabled=(not valid_openai_api_key_present),
+        )
+
+        query_text = st.text_input(
+            "What would you like to know?",
+            placeholder="Enter question here...",
+            disabled=(not valid_openai_api_key_present),
+        )
+
+        if st.form_submit_button("Submit", disabled=(not valid_openai_api_key_present)):
+            df_for_ai = airtable_conn.query(
+                base_id=selected_base_id,
+                table_id=table_for_ai,
+                cell_format="string",
+                time_zone="America/Los_Angeles",
+                user_locale="en-us",
+            )
+
+            with st.spinner("Generating response ..."):
+                # Initiate language model
+                llm = ChatOpenAI(
+                    model_name="gpt-3.5-turbo",
+                    temperature=0.2,
+                    openai_api_key=openai_api_key,
+                )
+                # Create Pandas DataFrame Agent
+                agent = create_pandas_dataframe_agent(
+                    llm, df_for_ai, verbose=True, agent_type=AgentType.OPENAI_FUNCTIONS
+                )
+                # Perform Query using the Agent
+                response = agent.run(query_text)
+                col2.markdown(response)
+
+    if df_for_ai is not None:
+        with st.expander("Show full dataframe used by AI"):
+            st.dataframe(df_for_ai)
