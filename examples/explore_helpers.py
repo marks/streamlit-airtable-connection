@@ -38,8 +38,8 @@ def create_graph_from_base_schema(base_id, json_data):
     for (source_table_id, target_table_id), field_ids in relationships.items():
         edge_label = ", ".join(field_names[field_id] for field_id in field_ids)
         graph.edge(
-            source_table_id,
             target_table_id,
+            source_table_id,
             label=edge_label,
             href=f"https://airtable.com/{base_id}/{target_table_id}/{field_ids[0]}",
             target="_blank",
