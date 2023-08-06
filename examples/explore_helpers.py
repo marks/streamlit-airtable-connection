@@ -41,7 +41,7 @@ def create_graph_from_base_schema(base_id, json_data):
             source_table_id,
             target_table_id,
             label=edge_label,
-            href=f"https://airtable.com/{base_id}/{source_table_id}/{field_ids[0]}",
+            href=f"https://airtable.com/{base_id}/{target_table_id}/{field_ids[0]}",
             target="_blank",
         )
 
