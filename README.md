@@ -10,7 +10,7 @@ The initial focus of this connector is on read-only operations: specifically
 of an Airtable base. Write-back support may be added in the future.
 
 ### 👀 Live demo w/ AI ✨
-A live demo of the code example in  [`examples/explore.py`](./examples/explore.py) can be accessed on Streamlit Cloud at [http://marks-airtable-connection-demo.streamlit.app](http://marks-airtable-connection-demo.streamlit.app). Provide your Open AI API key to be able to ask questions about the data in the selected Airtable table. The underlying data can be viewed and cloned [here](https://airtable.com/appdbRXgibDiQkNQN/shrIO0m8oyeQJTf9T).
+A live demo of the code example in  [`examples/explore.py`](./examples/explore.py) can be accessed on Streamlit Cloud at [http://marks-airtable-connection-demo.streamlit.app](http://marks-airtable-connection-demo.streamlit.app) [[demo video](https://share.support.airtable.com/RBuJRnyL)]. Provide your Open AI API key to be able to ask questions about the data in the selected Airtable table. The underlying data can be viewed and cloned [here](https://airtable.com/appdbRXgibDiQkNQN/shrIO0m8oyeQJTf9T).
 
 ---
 
