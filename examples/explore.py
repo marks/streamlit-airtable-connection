@@ -39,6 +39,11 @@ with st.sidebar:
 
 # Main content pane
 with st.container():
+    st.info(
+        "Welcome to the demo of the Airtable connector for Streamlit. The [source code for the connector and this example can be found on Github](https://github.com/marks/streamlit-airtable-connection). You can also watch a [demo video](https://share.support.airtable.com/RBuJRnyL) and access the [underlying sample Airtable base](https://airtable.com/appdbRXgibDiQkNQN/shrIO0m8oyeQJTf9T) from [thesquirrelcensus.com](https://www.thesquirrelcensus.com/).",
+        icon="👋",
+    )
+
     st.markdown("# Airtable Base Explorer")
     # st.markdown(f"## `{bases_id_to_name[selected_base_id]}`")
     base_schema = airtable_conn.get_base_schema(base_id=selected_base_id)
