@@ -168,6 +168,8 @@ with st.container():
 
     st.divider()
     st.markdown("### AI")
+    st.markdown(
+        "Uses [LangChain](https://www.langchain.com), [the LangChain Pandas Dataframe Agent](https://python.langchain.com/docs/integrations/toolkits/pandas), and [OpenAI's `chatgpt-3.5-turbo` model](https://platform.openai.com/docs/models/gpt-3-5) to answer questions about the table's records.")
 
     if not openai_api_key.startswith("sk-"):
         st.warning(
