@@ -19,7 +19,7 @@ setuptools.setup(
         "Source Code": "https://github.com/marks/streamlit-airtable-connection",
     },
     author="Mark Silverberg",
-    author_email="mark.silverberg@airtable.com",
+    author_email="mark@marksilver.net",
     license="MIT",
     classifiers=[
         "Development Status :: 3 - Alpha",
