@@ -1,6 +1,6 @@
 # Airtable ⚡ Streamlit Connection
 
-This repo includes a `st.experimental_connection` for Airtable which wraps the
+This repo includes a `st.connection` for Airtable which wraps the
 popular community created and maintained
 [pyAirtable](https://github.com/gtalarico/pyairtable) library.
 
@@ -42,7 +42,7 @@ import streamlit as st
 from streamlit_airtable import AirtableConnection
 
 # Create connection
-conn = st.experimental_connection("your_connection_name", type=AirtableConnection)
+conn = st.connection("your_connection_name", type=AirtableConnection)
 
 # Retrieve base schema
 base_schema = conn.get_base_schema()
@@ -66,9 +66,9 @@ st.dataframe(table_records)
 #### Steps to replicate the minimal example
 
 1. Clone/download this repo
-2. Install the connector (`pip install . -e`)
+2. Install the connector (`pip install -e .`)
 3. Move into the `examples/` dir (`cd examples/`)
-4. Copy `.streamlit/secrets.toml.example` to `.streamlit/secrets.toml.example`
+4. Copy `.streamlit/secrets.toml.example` to `.streamlit/secrets.toml`
    and provide your own values
 5. Run `streamlit run minimal_example.py`
 

@@ -1,8 +1,8 @@
 import setuptools
 
-VERSION = "0.0.2"
+VERSION = "0.0.4"
 
-NAME = "streamlit_airtable"
+NAME = "st-airtable-connection"
 
 INSTALL_REQUIRES = [
     "streamlit>=1.22.0",
@@ -19,7 +19,7 @@ setuptools.setup(
         "Source Code": "https://github.com/marks/streamlit-airtable-connection",
     },
     author="Mark Silverberg",
-    author_email="mark.silverberg@airtable.com",
+    author_email="mark@marksilver.net",
     license="MIT",
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -34,4 +34,6 @@ setuptools.setup(
     # Requirements
     install_requires=INSTALL_REQUIRES,
     packages=["streamlit_airtable"],
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
 )
