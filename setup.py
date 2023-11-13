@@ -1,6 +1,6 @@
 import setuptools
 
-VERSION = "0.0.3"
+VERSION = "0.0.4"
 
 NAME = "st-airtable-connection"
 
@@ -34,4 +34,6 @@ setuptools.setup(
     # Requirements
     install_requires=INSTALL_REQUIRES,
     packages=["streamlit_airtable"],
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
 )
