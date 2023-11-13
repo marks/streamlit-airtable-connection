@@ -1,8 +1,8 @@
 import setuptools
 
-VERSION = "0.0.2"
+VERSION = "0.0.3"
 
-NAME = "streamlit_airtable"
+NAME = "st-airtable-connection"
 
 INSTALL_REQUIRES = [
     "streamlit>=1.22.0",
