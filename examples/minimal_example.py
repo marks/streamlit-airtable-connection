@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_airtable import AirtableConnection
 
 # Create connection
-conn = st.experimental_connection("your_connection_name", type=AirtableConnection)
+conn = st.connection("your_connection_name", type=AirtableConnection)
 
 # Retrieve base schema
 base_schema = conn.get_base_schema()

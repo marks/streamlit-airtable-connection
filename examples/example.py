@@ -3,12 +3,12 @@ import streamlit as st
 import pandas as pd
 
 st.image("https://airtable.com/favicon.ico")
-st.markdown("## Airtable `st.experimental_connection` example")
+st.markdown("## Airtable `st.connection` example")
 
 st.markdown("----")
 st.markdown("### Connect to Airtable")
 with st.echo():
-    conn = st.experimental_connection("your_connection_name", type=AirtableConnection)
+    conn = st.connection("your_connection_name", type=AirtableConnection)
 
 st.markdown(
     "### Get a list of bases\n(That the provided personal access token has access to)"

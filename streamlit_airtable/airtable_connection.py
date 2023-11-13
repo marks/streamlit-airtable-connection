@@ -6,7 +6,7 @@ import pandas as pd
 
 
 class AirtableConnection(ExperimentalBaseConnection[Base]):
-    """Basic st.experimental_connection implementation for DuckDB"""
+    """Basic st.connection implementation for Airtable"""
 
     # Establish a connection to Airtable using personal access token and base ID
     def _connect(self, **kwargs) -> Base:

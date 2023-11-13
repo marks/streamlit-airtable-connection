@@ -10,8 +10,8 @@ from streamlit_airtable import AirtableConnection
 
 import explore_helpers
 
-# Initiate connection to Airtable using st.experimental_connection
-airtable_conn = st.experimental_connection(
+# Initiate connection to Airtable using st.connection
+airtable_conn = st.connection(
     "your_connection_name", type=AirtableConnection
 )
 

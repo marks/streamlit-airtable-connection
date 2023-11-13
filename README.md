@@ -1,6 +1,6 @@
 # Airtable ⚡ Streamlit Connection
 
-This repo includes a `st.experimental_connection` for Airtable which wraps the
+This repo includes a `st.connection` for Airtable which wraps the
 popular community created and maintained
 [pyAirtable](https://github.com/gtalarico/pyairtable) library.
 
@@ -42,7 +42,7 @@ import streamlit as st
 from streamlit_airtable import AirtableConnection
 
 # Create connection
-conn = st.experimental_connection("your_connection_name", type=AirtableConnection)
+conn = st.connection("your_connection_name", type=AirtableConnection)
 
 # Retrieve base schema
 base_schema = conn.get_base_schema()
