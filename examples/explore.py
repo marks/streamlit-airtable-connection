@@ -219,6 +219,7 @@ with st.container():
                     df_for_ai,
                     verbose=True,
                     agent_type=AgentType.OPENAI_FUNCTIONS,
+                    allow_dangerous_code=True
                 )
                 # Perform Query using the Agent
                 response = {"content": agent.run(prompt), "role": "assistant"}
